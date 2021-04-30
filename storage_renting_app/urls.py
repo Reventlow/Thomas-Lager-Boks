@@ -1,4 +1,4 @@
-"""djangoLagerBoks URL Configuration
+"""djangoProject URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -13,14 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from to_do_list import views
+
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('todo/', include('to_do_list.urls')),
-    path('authenticate/', include('authenticate.urls')),
-    path('storage_renting_app/', include('storage_renting_app.urls')),
-    path('', include('pages.urls')),
+    #path('', views.todo, name='todo'),
+    path('customer_list/<job_id>', views.customer_list, name='customer_list'),
+    #path('cross_off/<job_id>', views.cross_off, name='cross_off'),
+    #path('uncross/<job_id>', views.uncross, name='uncross'),
+    #path('edit/<job_id>', views.edit, name='edit'),
 ]
