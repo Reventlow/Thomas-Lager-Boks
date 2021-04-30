@@ -3,12 +3,13 @@ from .models import Jobs
 from .forms import ListForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-import random
+from django.contrib.auth.decorators import login_required
 
 
 
 # Create your views here.
 
+@login_required(login_url='login')
 def todo(request):
     if request.method == 'POST':
         form = ListForm(request.POST or None)
@@ -23,13 +24,14 @@ def todo(request):
         context = {'all_items': all_items}
         return render(request, 'todo.html', context)
 
-
+@login_required(login_url='login')
 def delete(request, job_id):
     item = Jobs.objects.get(pk=list_id)
     item.delete()
     messages.success(request, 'Opgaven er blevet slettet fra din opgave list')
     return redirect('todo')
 
+@login_required(login_url='login')
 def cross_off(request, job_id):
     item = Jobs.objects.get(pk=list_id)
     item.completed = True
@@ -37,6 +39,7 @@ def cross_off(request, job_id):
     item.save()
     return redirect('todo')
 
+@login_required(login_url='login')
 def uncross(request, job_id):
     item = Jobs.objects.get(pk=list_id)
     item.completed = False
@@ -44,6 +47,7 @@ def uncross(request, job_id):
     item.save()
     return redirect('todo')
 
+@login_required(login_url='login')
 def edit(request, job_id):
     if request.method ==  'POST':
         item = Jobs.objects.get(pk=list_id)
