@@ -21,7 +21,8 @@ urlpatterns = [
     #path('', views.todo, name='todo'),
     path('customer_list', views.customer_list, name='customer_list'),
     path('create_customer', views.create_customer, name='create_customer'),
+    path('delete_customer/<customer_id>', views.delete_customer, name='delete_customer'),
     #path('cross_off/<job_id>', views.cross_off, name='cross_off'),
     #path('uncross/<job_id>', views.uncross, name='uncross'),
-    #path('edit/<job_id>', views.edit, name='edit'),
+    path('edit_customer/<job_id>', views.edit_customer, name='edit_customer'),
 ]

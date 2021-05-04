@@ -9,10 +9,10 @@ class Customers(models.Model):
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
     country  = models.CharField(max_length=200)
-    telefon = models.CharField(max_length=200)
+    telephone = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
     notes = models.CharField(max_length=200)
-    lastAssociation = models.DateField(default=None)
+    lastAssociation = models.DateField(default=None, null=True, blank=True)
 
     def __str__(self):
         return self.item +' | ' +  str(self.completed)

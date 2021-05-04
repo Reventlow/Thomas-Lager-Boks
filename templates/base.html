@@ -13,8 +13,27 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <title>{% block title %} Hello wolrd! {% endblock %}</title>
-    <script>         $(document).ready(function () {
-        var date_input = $('input[name="date"]'); //our date input has the name "date"             var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";             date_input.datepicker({                 format: 'dd/mm/yyyy',                 container: container,                 todayHighlight: true,                 autoclose: true,             })         })     </script>
+    <script>
+
+        $(document).ready(function () {
+        var date_input = $('input[name="date"]');}
+    </script>
+    <script>
+$(document).ready(function(){
+ var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+
+})
+});
+
+    </script>
+<script>
+
+ $(document).ready(function(){
+    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+  trigger: 'focus'}});
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -45,7 +64,6 @@
                         </li>
                         <li><a class="dropdown-item" href="{% url 'customer_list' %}">Kundeliste</a></li>
                         <li><a class="dropdown-item" href="{% url 'create_customer' %}">Opret kunde</a></li>
-                        <li><a class="dropdown-item" href="{% url 'change_password' %}">Slet kunde</a></li>
                         <li><a class="dropdown-item" href="{% url 'change_password' %}">GDPR oprydning i kunde 
                             databasen</a></li>
                     </ul>

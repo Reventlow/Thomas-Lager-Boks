@@ -24,52 +24,43 @@
                 <td>
                     <center>Adresse</center>
                 </td>
-                <td>
-                    <center>Postnummer</center>
-                </td>
-                <td>
-                    <center>By</center>
-                </td>
-                <td>
-                    <center>Land</center>
-                </td>
+
                 <td>
                     <center>Telefon nr.</center>
                 </td>
                 <td>
                     <center>Email</center>
                 </td>
+
                 <td>
-                    <center>Noter</center>
+                    <center>Slet</center>
                 </td>
             </tr>
-            {% for jobs in all_items %}
-                {% if jobs.completed %}
-                    <tr class="table-secondary ">
-                        <td class="striker">{{ jobs.item }}</td>
-                        <td>
-                            <center><a href="{% url 'uncross' jobs.id %}" class="btn btn-warning btn-sm " tabindex="-1"
-                                       role="button" aria-disabled="true">Afmarker løst</a></center>
-                        </td>
-                        <td>
-                            <center><a href="{% url 'delete' jobs.id %}" class="btn btn-danger btn-sm " tabindex="-1"
-                                       role="button" aria-disabled="true">Slet</a></center>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td>{{ jobs.item }} <a href="{% url 'edit' jobs.id %}" class="badge rounded-pill bg-dark">Rediger</a>
-                        </td>
-                        <td>
-                            <center><a href="{% url 'cross_off' jobs.id %}" class="btn btn-success btn-sm "
-                                       tabindex="-1" role="button" aria-disabled="true">Marker løst</a></center>
-                        </td>
-                        <td>
-                            <center><a href="{% url 'delete' jobs.id %}" class="btn btn-danger btn-sm " tabindex="-1"
-                                       role="button" aria-disabled="true">Slet</a></center>
-                        </td>
-                    </tr>
-                {% endif %}
+            {% for customer in all_items %}
+                <tr>
+                    <td>{{ customer.name }} <a href="{% url 'edit_customer' customer.id %}"
+                                               class="badge rounded-pill bg-dark">Rediger</a>
+                        <a href="#"  data-bs-toggle="popover" class="badge rounded-pill bg-success"
+                                title="Noter på {{ customer.name }}" data-bs-trigger="focus"
+                                data-bs-content="{{ customer.notes }}">Noter
+                        </a>
+                    </td>
+                    <td>
+                        {{ customer.address }}<br/>{{ customer.zipCode }} {{ customer.city }}<br/>{{ customer.state }}, {{ customer.country }}
+                    </td>
+
+                    <td>
+                        <center>{{ customer.telephone }}</center>
+                    </td>
+                    <td>
+                        <center><a href="mailto:{{ customer.email }}" type="button"
+                                   class="btn btn-info">{{ customer.email }}</a></center>
+                    </td>
+                    <td>
+                        <center><a href="{% url 'delete_customer' customer.id %}" class="btn btn-danger btn-sm " tabindex="-1" role="button" aria-disabled="true">Slet</a></center>
+                    </td>
+                </tr>
+
             {% endfor %}
         </table>
     {% endif %}

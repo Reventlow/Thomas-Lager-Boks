@@ -26,14 +26,14 @@ def todo(request):
 
 @login_required(login_url='login')
 def delete(request, job_id):
-    item = Jobs.objects.get(pk=list_id)
+    item = Jobs.objects.get(pk=job_id)
     item.delete()
     messages.success(request, 'Opgaven er blevet slettet fra din opgave list')
     return redirect('todo')
 
 @login_required(login_url='login')
 def cross_off(request, job_id):
-    item = Jobs.objects.get(pk=list_id)
+    item = Jobs.objects.get(pk=job_id)
     item.completed = True
     messages.success(request, 'Opgaven er løst, hvor er du bare mega sej')
     item.save()
@@ -41,7 +41,7 @@ def cross_off(request, job_id):
 
 @login_required(login_url='login')
 def uncross(request, job_id):
-    item = Jobs.objects.get(pk=list_id)
+    item = Jobs.objects.get(pk=job_id)
     item.completed = False
     messages.success(request, 'Opgaven var ikke helt løst, no worries det handler bare om at give den en skalle ;-)')
     item.save()
@@ -50,7 +50,7 @@ def uncross(request, job_id):
 @login_required(login_url='login')
 def edit(request, job_id):
     if request.method ==  'POST':
-        item = Jobs.objects.get(pk=list_id)
+        item = Jobs.objects.get(pk=job_id)
         form = ListForm(request.POST or None, instance=item)
         if form.is_valid() and request.POST['item'] != '':
             form.save()
@@ -58,7 +58,7 @@ def edit(request, job_id):
             messages.success(request, request.POST['item']+ ' er blevet redigeret i din opgave list')
             return redirect('todo')
     else:
-        item =Jobs.objects.get(pk=list_id)
+        item =Jobs.objects.get(pk=job_id)
         context = {'item': item}
         return render(request, 'edit.html', context)
 
