@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Kundeliste{% endblock %}
+
+{% block content %}
+
+    <h1>Kundeliste</h1>
+
+    <br/>
+    {% if messages %}
+
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if all_items %}
+        <table class="table">
+            <tr class="table-dark">
+                <td>Navn</td>
+                <td>
+                    <center>Adresse</center>
+                </td>
+                <td>
+                    <center>Postnummer</center>
+                </td>
+                <td>
+                    <center>By</center>
+                </td>
+                <td>
+                    <center>Land</center>
+                </td>
+                <td>
+                    <center>Telefon nr.</center>
+                </td>
+                <td>
+                    <center>Email</center>
+                </td>
+                <td>
+                    <center>Noter</center>
+                </td>
+            </tr>
+            {% for jobs in all_items %}
+                {% if jobs.completed %}
+                    <tr class="table-secondary ">
+                        <td class="striker">{{ jobs.item }}</td>
+                        <td>
+                            <center><a href="{% url 'uncross' jobs.id %}" class="btn btn-warning btn-sm " tabindex="-1"
+                                       role="button" aria-disabled="true">Afmarker løst</a></center>
+                        </td>
+                        <td>
+                            <center><a href="{% url 'delete' jobs.id %}" class="btn btn-danger btn-sm " tabindex="-1"
+                                       role="button" aria-disabled="true">Slet</a></center>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ jobs.item }} <a href="{% url 'edit' jobs.id %}" class="badge rounded-pill bg-dark">Rediger</a>
+                        </td>
+                        <td>
+                            <center><a href="{% url 'cross_off' jobs.id %}" class="btn btn-success btn-sm "
+                                       tabindex="-1" role="button" aria-disabled="true">Marker løst</a></center>
+                        </td>
+                        <td>
+                            <center><a href="{% url 'delete' jobs.id %}" class="btn btn-danger btn-sm " tabindex="-1"
+                                       role="button" aria-disabled="true">Slet</a></center>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

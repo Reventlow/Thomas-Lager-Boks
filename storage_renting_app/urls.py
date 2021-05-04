@@ -19,7 +19,8 @@ from . import views
 
 urlpatterns = [
     #path('', views.todo, name='todo'),
-    path('customer_list/<job_id>', views.customer_list, name='customer_list'),
+    path('customer_list', views.customer_list, name='customer_list'),
+    path('create_customer', views.create_customer, name='create_customer'),
     #path('cross_off/<job_id>', views.cross_off, name='cross_off'),
     #path('uncross/<job_id>', views.uncross, name='uncross'),
     #path('edit/<job_id>', views.edit, name='edit'),

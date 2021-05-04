@@ -9,3 +9,6 @@ from django.contrib.auth.decorators import login_required
 
 def customer_list(request):
     return render(request, 'customer_list.html')
+
+def create_customer(request):
+    return render(request, 'create_customer.html')
