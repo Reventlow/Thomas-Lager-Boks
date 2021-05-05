@@ -31,20 +31,23 @@ def create_customer(request):
 
 def edit_customer(request, customer_id):
     if request.method ==  'POST':
-        item = Jobs.objects.get(pk=job_id)
-        form = ListForm(request.POST or None, instance=item)
-        if form.is_valid() and request.POST['item'] != '':
+        customer = Customers.objects.get(pk=customer_id)
+        form = CreateCustomerForm(request.POST or None, instance=customer)
+        if form.is_valid() and request.POST['name'] != '':
             form.save()
-            all_items = Jobs.objects.all
-            messages.success(request, request.POST['item']+ ' er blevet redigeret i din opgave list')
-            return redirect('todo')
+            all_items = Customers.objects.all
+            messages.success(request, request.POST['name']+ ' er blevet redigeret i din kundelist')
+            return redirect('customer_list')
+        else:
+            messages.success(request, 'Kunde er ikke blevet redigeret i din kundelist')
+            return redirect('customer_list')
     else:
-        item =Jobs.objects.get(pk=job_id)
-        context = {'item': item}
-        return render(request, 'edit.html', context)
+        form =Customers.objects.get(pk=customer_id)
+        context = {'form': form}
+        return render(request, 'edit_customer.html', context)
 
 def delete_customer(request, customer_id):
-    item = Customers.objects.get(pk=customer_id)
-    item.delete()
+    customer = Customers.objects.get(pk=customer_id)
+    customer.delete()
     messages.success(request, 'Kunden er blevet slettet fra din kundelist')
     return redirect('customer_list')

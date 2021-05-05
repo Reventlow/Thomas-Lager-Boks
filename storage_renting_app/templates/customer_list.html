@@ -26,10 +26,10 @@
                 </td>
 
                 <td>
-                    <center>Telefon nr.</center>
+                    <center>Kontakter</center>
                 </td>
                 <td>
-                    <center>Email</center>
+                    <center>Nøgle brikker og pincoder</center>
                 </td>
 
                 <td>
@@ -50,11 +50,11 @@
                     </td>
 
                     <td>
-                        <center>{{ customer.telephone }}</center>
+                        <center>{{ customer.telephone }}<br><a href="mailto:{{ customer.email }}" type="button"
+                                   class="btn btn-info">{{ customer.email }}</a></center>
                     </td>
                     <td>
-                        <center><a href="mailto:{{ customer.email }}" type="button"
-                                   class="btn btn-info">{{ customer.email }}</a></center>
+                        <center> </center>
                     </td>
                     <td>
                         <center><a href="{% url 'delete_customer' customer.id %}" class="btn btn-danger btn-sm " tabindex="-1" role="button" aria-disabled="true">Slet</a></center>

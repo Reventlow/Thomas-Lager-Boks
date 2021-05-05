@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %} {% block title %}Tsddd | Rediger kunde: {{ form.name }} {% endblock %} {% block content %}
+    <div class="col-6 col-md-4 offset-md-3"><h1>Rediger kunde</h1>
+        <form action="{% url 'edit_customer' form.id %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3"><label for="name" class="form-label">Navn</label>
+                <input type="text" class="form-control" id="name" name="name"
+                                     placeholder="Indtast navn" value="{{ form.name }}"></div>
+            <div class="mb-3"><label for="address" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="address" name="address"
+                                     placeholder="Indtast adresse" value="{{ form.address }}"></div>
+            <div class="mb-3"><label for="zipCode" class="form-label">Post nummer</label>
+                <input type="text" class="form-control" id="zipCode" name="zipCode"
+                                     placeholder="Indtast postnummer" value="{{ form.zipCode }}"></div>
+            <div class="mb-3"><label for="city" class="form-label">By</label>
+                <input type="text" class="form-control" id="city" name="city"
+                                     placeholder="Indtast by" value="{{ form.city }}"></div>
+            <div class="mb-3"><label for="state" class="form-label">Stat</label>
+                <input type="text" class="form-control" id="state" name="state"
+                                     placeholder="Indtast stat" value="{{ form.state }}"></div>
+            <div class="mb-3"><label for="country" class="form-label">Land</label>
+                <input type="text" class="form-control" id="country" name="country"
+                                     placeholder="Indtast land" value="{{ form.country }}"></div>
+            <div class="mb-3"><label for="telephone" class="form-label">Telefon nummer</label>
+                <input type="text" class="form-control" id="telephone" name="telephone"
+                                     placeholder="Indtast telefon nummer" value="{{ form.telephone }}"></div>
+            <div class="mb-3"><label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email"
+                                     placeholder="Indtast email" value="{{ form.email }}"></div>
+            <div class="mb-3"><label for="notes" class="form-label">Noter</label> <textarea
+                    class="form-control" id="notes" rows="3" name="notes">{{ form.notes }}</textarea></div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div> {% endblock %}
