@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}To-Do List | Opret Lokation {% endblock %} {% block content %}
+    <div class="col-6 col-md-4 offset-md-3"><h1>Opret Lokation</h1>
+        <form action="{% url 'storageCenter_list' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3"><input type="text" class="form-control" id="name" name="name"
+                                     placeholder="Indtast navn"></div>
+            <div class="mb-3"><input type="text" class="form-control" id="address" name="address"
+                                     placeholder="Indtast adresse"></div>
+            <div class="mb-3"><input type="text" class="form-control" id="zipCode" name="zipCode"
+                                     placeholder="Indtast postnummer"></div>
+            <div class="mb-3"><input type="text" class="form-control" id="city" name="city"
+                                     placeholder="Indtast by"></div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div> {% endblock %}

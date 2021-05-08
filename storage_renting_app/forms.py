@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customers
+from .models import Customers, StorageCenters, StorageReservations, StorageUnits
 
 class CreateCustomerForm(forms.ModelForm):
     class Meta:
@@ -11,3 +11,12 @@ class CustomerList(forms.ModelForm):
         model = Customers
         fields=["id","name", "address","zipCode", "city","state", "country","telephone", "email","notes", "lastAssociation"]
 
+class CreateStorageCenterForm(forms.ModelForm):
+    class Meta:
+        model = StorageCenters
+        fields=["name", "address","zipCode", "city"]
+
+class StorageCenterList(forms.ModelForm):
+    class Meta:
+        model = StorageCenters
+        fields=["id","name", "address","zipCode", "city"]

@@ -28,8 +28,8 @@ class StorageCenters(models.Model):
 
 class StorageUnits(models.Model):
     name = models.CharField(max_length=200)
-    size = models.CharField(max_length=200)
-    price = models.CharField(max_length=200)
+    size = models.IntegerField()
+    price = models.IntegerField()
     storagecenterId = models.ForeignKey(StorageCenters, on_delete=models.CASCADE)
     inService = models.BooleanField(default=True)
     rentedToId = models.ForeignKey(Customers, on_delete=models.CASCADE)

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Lokations liste{% endblock %}
+
+{% block content %}
+
+    <h1>Lokations liste</h1>
+
+    <br/>
+    {% if messages %}
+
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if all_items %}
+        <table class="table">
+            <tr class="table-dark">
+                <td>Navn</td>
+                <td>
+                    <center>Adresse</center>
+                </td>
+                <td>
+                    <center>Rum info</center>
+                </td>
+                <td>
+                    <center>Meter info</center>
+                </td>
+                <td>
+                    <center>Slet</center>
+                </td>
+            </tr>
+            {% for locations in all_items %}
+                <tr>
+                    <td>{{ locations.name }} <a href="{% url 'edit_storageCenter' locations.id  %}"
+                                                class="badge rounded-pill bg-dark">Rediger</a>
+
+                    </td>
+                    <td>
+                        {{ locations.address }}<br/>{{ locations.zipCode }} {{ locations.city }}
+                    </td>
+
+                    <td>
+                        <center>Kommer snart</center>
+                    </td>
+                    <td>
+                        <center>Kommer snart</center>
+
+                    <td>
+                        <center><a href="{% url 'delete_storageCenter' locations.id %}" class="btn btn-danger btn-sm "
+                                                   tabindex="-1" role="button" aria-disabled="true">Slet</a></center>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
