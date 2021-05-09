@@ -27,4 +27,13 @@ urlpatterns = [
     path('create_storageCenter', views.create_storageCenter, name='create_storageCenter'),
     path('edit_storageCenter/<storageCenter_id>', views.edit_storageCenter, name='edit_storageCenter'),
     path('delete_storageCenter/<storageCenter_id>', views.delete_storageCenter, name='delete_storageCenter'),
+    path('storageUnit_list', views.storageUnit_list, name='storageUnit_list'),
+    path('create_storageUnit', views.create_storageUnit, name='create_storageUnit'),
+    path('edit_storageUnit/<storageUnit_id>', views.edit_storageUnit, name='edit_storageUnit'),
+    path('edit_storageUnit_update/<storageUnit_id>', views.edit_storageUnit_update, name='edit_storageUnit_update'),
+    path('delete_storageUnit/<storageUnit_id>', views.delete_storageUnit, name='delete_storageUnit'),
+    path('assign_storageUnit/<storageUnit_id>', views.assign_storageUnit, name='assign_storageUnit'),
+    path('assign_storageUnit_delete/<storageUnit_id>', views.assign_storageUnit_delete, name='assign_storageUnit_delete'),
+    path('service_storageUnit_setTrue/<storageUnit_id>', views.service_storageUnit_setTrue, name='service_storageUnit_setTrue'),
+    path('service_storageUnit_setFalse/<storageUnit_id>', views.service_storageUnit_setFalse, name='service_storageUnit_setFalse'),
 ]

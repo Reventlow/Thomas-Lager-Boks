@@ -22,18 +22,13 @@
             <tr class="table-dark">
                 <td>Navn</td>
                 <td>
-                    <center>Adresse</center>
+                    Adresse
                 </td>
 
                 <td>
                     <center>Kontakt info</center>
                 </td>
-                <td>
-                    <center>Nøgle brikker og pinkoder</center>
-                </td>
-                <td>
-                    <center>Lejede rum og reseverationer</center>
-                </td>
+
 
                 <td>
                     <center>Slet</center>
@@ -43,27 +38,27 @@
                 <tr>
                     <td>{{ customer.name }} <a href="{% url 'edit_customer' customer.id %}"
                                                class="badge rounded-pill bg-dark">Rediger</a>
-                        <a href="#"  data-bs-toggle="popover" data-html="true" class="badge rounded-pill bg-success"
-                                title="Noter på {{ customer.name }}" data-bs-trigger="focus"
-                                data-bs-content="{{ customer.notes }}">Noter
-                        </a>
+                        {% if not customer.notes == None %}
+                            <a href="#" data-bs-toggle="popover" data-html="true" class="badge rounded-pill bg-success"
+                               title="Noter på {{ customer.name }}" data-bs-trigger="focus"
+                               data-bs-content="{{ customer.notes }}">Noter
+                            </a> {% endif %}
                     </td>
                     <td>
-                        {{ customer.address }}<br/>{{ customer.zipCode }} {{ customer.city }}<br/>{{ customer.state }}, {{ customer.country }}
+                        {% if not customer.address == None %}{{ customer.address }}<br/>{{ customer.zipCode }}
+                            {{ customer.city }}<br/>{{ customer.state }}, {{ customer.country }}{% endif %}
                     </td>
 
                     <td>
-                        <center>{{ customer.telephone }}<br><a href="mailto:{{ customer.email }}" type="button"
-                                   class="btn btn-info">{{ customer.email }}</a></center>
+                        <center>{% if not customer.telephone == None %}{{ customer.telephone }}<br>{% endif %}
+                            {% if not customer.email == None %}<a href="mailto:{{ customer.email }}" type="button"
+                                                                  class="btn btn-info">{{ customer.email }}</a>{% endif %}
+                        </center>
                     </td>
+
                     <td>
-                        <center>Brik </center>
-                    </td>
-                                    <td>
-                    <center>Lejede rum og Reseverationer</center>
-                </td>
-                    <td>
-                        <center><a href="{% url 'delete_customer' customer.id %}" class="btn btn-danger btn-sm " tabindex="-1" role="button" aria-disabled="true">Slet</a></center>
+                        <center><a href="{% url 'delete_customer' customer.id %}" class="btn btn-danger btn-sm "
+                                   tabindex="-1" role="button" aria-disabled="true">Slet</a></center>
                     </td>
                 </tr>
 

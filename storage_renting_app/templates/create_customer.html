@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block title %}To-Do List | Opret kunde {% endblock %} {% block content %}
+{% extends 'base.html' %} {% block title %}Thomas virtuel værktøjskasse | Opret kunde{% endblock %} {% block content %}
     <div class="col-6 col-md-4 offset-md-3"><h1>Opret kunde</h1>
         <form action="{% url 'customer_list' %}" method="POST">
             {% csrf_token %}

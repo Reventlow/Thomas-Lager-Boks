@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Thomas virtuel værktøjskasse | Oversigt af rum{% endblock %}
+
+{% block content %}
+
+    <h1>Kundeliste</h1>
+
+    <br/>
+    {% if messages %}
+
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if all_items %}
+        <table class="table">
+            <tr class="table-dark">
+                <td>Navn</td>
+                <td>
+                    Størrelse
+                </td>
+
+                <td>
+                    Pris
+                </td>
+                <td>
+                    <center>Center</center>
+                </td>
+                <td>
+                    <center>Er brugs dygtig</center>
+                </td>
+                <td>
+                    <center>Udlejet til</center>
+                </td>
+                <td>
+                    <center>Slet Rum</center>
+                </td>
+            </tr>
+            {% for storageUnit in all_items %}
+                <tr {% if storageUnit.inService == False %} class="table-danger" {% endif %}>
+                    <td>{{ storageUnit.name }} <a href="{% url 'edit_storageUnit' storageUnit.id %}"
+                                                  class="badge rounded-pill bg-dark">Rediger</a>
+                       {% if not storageUnit.notes == None %}<a href="#" data-bs-toggle="popover" data-html="true" class="badge rounded-pill bg-success"
+                           title="Noter på: {{ storageUnit.name }}" data-bs-trigger="focus"
+                           data-bs-content="{{ storageUnit.notes }}">Noter
+                        </a>{% endif %}
+                    </td>
+                    <td>
+                        {{ storageUnit.size }} m^2
+                    </td>
+
+                    <td>
+                        {{ storageUnit.price }} kr.
+                    </td>
+                    <td>
+                        <center>{{ storageUnit.storageCenter.name }}</center>
+                    </td>
+                    <td>
+                        <center>{% if storageUnit.inService == True %}
+                            <a href="{% url 'service_storageUnit_setFalse' storageUnit.id  %}"
+                               class="badge rounded-pill bg-success">Rum er brugsdygtig</a>{% else %}
+                            <a href="{% url 'service_storageUnit_setTrue' storageUnit.id%}"
+                               class="badge rounded-pill bg-warning">Rum er under service</a>{% endif %}</center>
+                    </td>
+                    <td>
+                        <center>{% if not storageUnit.rentedTo %}<a href="{% url 'assign_storageUnit' storageUnit.id %}"
+                                                                    class="badge rounded-pill bg-dark">Udleje til
+                            kunde</a>{% else %}{{ storageUnit.rentedTo }}<br/>
+                            <a href="{% url 'assign_storageUnit_delete' storageUnit.id %}"
+                               class="badge rounded-pill bg-info">Fjerne lejer fra rum</a>{% endif %}</center>
+                    </td>
+                    <td>
+                        <center>{% if not storageUnit.rentedTo %}
+                            <a href="{% url 'delete_storageUnit' storageUnit.id %}" class="btn btn-danger btn-sm "
+                               tabindex="-1" role="button" aria-disabled="true">Slet</a>{% endif %}</center>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

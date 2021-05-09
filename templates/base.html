@@ -12,7 +12,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <title>{% block title %} Hello wolrd! {% endblock %}</title>
+    <title>{% block title %}Thomas virtuel værktøjskasse{% endblock %}</title>
     <script>
 
         $(document).ready(function () {
@@ -50,9 +50,8 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
                                                  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Udlejnings rum og kunde info  </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Udlejningsrum liste</a></li>
-                        <li><a class="dropdown-item" href="{% url 'change_password' %}">Opret udlejningsrum</a></li>
-                        <li><a class="dropdown-item" href="{% url 'change_password' %}">Slet udlejningsrum</a></li>
+                        <li><a class="dropdown-item" href="{% url 'storageUnit_list' %}">Udlejningsrum liste</a></li>
+                        <li><a class="dropdown-item" href="{% url 'create_storageUnit' %}">Opret udlejningsrum</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -81,7 +80,7 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
                         <li><a class="dropdown-item" href="{% url 'register_user' %}">Registrer ny bruger</a></li>
                     </ul>
                 </li></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Om denne app</a>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Om denne webside</a>
                 </li>                 {% endif %}             </ul>             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" class="btn btn-primary  btn-lg " tabindex="-1" role="button"
                aria-disabled="true">Logud</a>             {% else %}

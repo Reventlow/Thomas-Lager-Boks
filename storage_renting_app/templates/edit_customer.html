@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block title %}Tsddd | Rediger kunde: {{ form.name }} {% endblock %} {% block content %}
+{% extends 'base.html' %} {% block title %}Thomas virtuel værktøjskasse | Rediger kunde: {{ form.name }} {% endblock %} {% block content %}
     <div class="col-6 col-md-4 offset-md-3"><h1>Rediger kunde</h1>
         <form action="{% url 'edit_customer' form.id %}" method="POST">
             {% csrf_token %}

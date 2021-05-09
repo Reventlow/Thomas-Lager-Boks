@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block title %}Thomas virtuel værktøjskasse | Kunde database{% endblock %}
+{% block content %}
+    <div class="col-6 col-md-4 offset-md-3"><h1>Opret Rum</h1>
+        <form action="{% url 'storageUnit_list' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div> {% endblock %}

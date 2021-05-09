@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Lokations liste{% endblock %}
+{% block title %}Thomas virtuel værktøjskasse | Lokations liste{% endblock %}
 
 {% block content %}
 
@@ -22,14 +22,9 @@
             <tr class="table-dark">
                 <td>Navn</td>
                 <td>
-                    <center>Adresse</center>
+                    Adresse
                 </td>
-                <td>
-                    <center>Rum info</center>
-                </td>
-                <td>
-                    <center>Meter info</center>
-                </td>
+
                 <td>
                     <center>Slet</center>
                 </td>
@@ -44,11 +39,6 @@
                         {{ locations.address }}<br/>{{ locations.zipCode }} {{ locations.city }}
                     </td>
 
-                    <td>
-                        <center>Kommer snart</center>
-                    </td>
-                    <td>
-                        <center>Kommer snart</center>
 
                     <td>
                         <center><a href="{% url 'delete_storageCenter' locations.id %}" class="btn btn-danger btn-sm "

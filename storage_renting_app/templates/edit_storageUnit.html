@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block title %}Thomas virtuel værktøjskasse |  Rediger rum {% endblock %}
+{% block content %}
+    <div class="col-6 col-md-4 offset-md-3"><h1>Rediger Rum</h1>
+        <form action="{% url 'edit_storageUnit_update' form_id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div> {% endblock %}
