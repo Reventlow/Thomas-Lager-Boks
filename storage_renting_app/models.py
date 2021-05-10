@@ -36,7 +36,7 @@ class StorageUnits(models.Model):
     notes = models.CharField(max_length=500, default=None, null=True, blank=True)
 
     def __str__(self):
-        return self.name +' | ' +  str(self.id)
+        return self.name
 
 class StorageReservations(models.Model):
     customerId = models.ForeignKey(Customers, on_delete=models.CASCADE)
