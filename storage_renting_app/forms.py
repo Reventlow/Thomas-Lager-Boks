@@ -28,7 +28,7 @@ class CreateStorageUnitForm(forms.ModelForm):
         attrs={'class': 'form-control', 'placeholder': 'Rummets størrelse (kun tal)'}))
     price = forms.CharField(label="", widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Rummets pris (kun tal)'}))
-    storageCenter = forms.ChoiceField(choices=StorageCenters.objects.values_list('id', 'name'),label="Sted", widget=forms.Select(
+    storageCenter = forms.ModelChoiceField(queryset=StorageCenters.objects.all(), label="Sted", widget=forms.Select(
         attrs={'class': 'form-control'}))
     inService = forms.BooleanField(label="Er rummet brugbar", initial=True)
     notes = forms.CharField(label="Noter", max_length=100, required=False, widget=forms.Textarea(
@@ -47,7 +47,7 @@ class StorageUnitAssign(forms.ModelForm):
 
     name = forms.CharField(label="Rum", max_length=100, widget=forms.TextInput(
         attrs={'class': 'form-control', 'readonly':'readonly'}))
-    rentedTo = forms.ChoiceField(choices=Customers.objects.values_list('id', 'name'), required=False,label="Kunde", widget=forms.Select(
+    rentedTo = forms.ModelChoiceField(queryset=Customers.objects.all(), required=False,label="Kunde", widget=forms.Select(
         attrs={'class': 'form-control'}))
 
     class Meta:
@@ -69,7 +69,7 @@ class EditStorageUnitForm(forms.ModelForm):
         attrs={'class': 'form-control', 'placeholder': 'Rummets størrelse (kun tal)'}))
     price = forms.CharField(label="Rummets pris (kun tal)", widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Rummets pris (kun tal)'}))
-    storageCenter = forms.ChoiceField(choices=StorageCenters.objects.values_list('id', 'name'),label="Sted", widget=forms.Select(
+    storageCenter = forms.ModelChoiceField(queryset=StorageCenters.objects.all(), label="Sted", widget=forms.Select(
         attrs={'class': 'form-control'}))
     inService = forms.BooleanField(label="Er rummet brugbar", initial=True)
     notes = forms.CharField(label="Noter", max_length=100, required=False, widget=forms.Textarea(

@@ -30,7 +30,7 @@ class StorageUnits(models.Model):
     name = models.CharField(max_length=200)
     size = models.IntegerField()
     price = models.IntegerField()
-    storageCenter = models.ForeignKey(StorageCenters, related_name="%(class)s_requests_created", on_delete=models.CASCADE, default=1)
+    storageCenter = models.ForeignKey(StorageCenters, related_name="%(class)s_requests_created", on_delete=models.SET_NULL, blank=True, null=True)
     inService = models.BooleanField(default=True)
     rentedTo = models.ForeignKey(Customers, on_delete=models.CASCADE, default=None, null=True, blank=True)
     notes = models.CharField(max_length=500, default=None, null=True, blank=True)
@@ -39,8 +39,8 @@ class StorageUnits(models.Model):
         return self.name
 
 class StorageReservations(models.Model):
-    customerId = models.ForeignKey(Customers, on_delete=models.CASCADE)
-    storageUnitId = models.ForeignKey(StorageUnits, on_delete=models.CASCADE)
+    customerId = models.ForeignKey(Customers, on_delete=models.SET_NULL, blank=True, null=True)
+    storageUnitId = models.ForeignKey(StorageUnits, on_delete=models.SET_NULL, blank=True, null=True)
     notes = models.CharField(max_length=500)
 
     def __str__(self):
