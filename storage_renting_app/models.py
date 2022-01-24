@@ -32,7 +32,7 @@ class StorageUnits(models.Model):
     price = models.IntegerField()
     storageCenter = models.ForeignKey(StorageCenters, related_name="%(class)s_requests_created", on_delete=models.SET_NULL, blank=True, null=True)
     inService = models.BooleanField(default=True)
-    rentedTo = models.ForeignKey(Customers, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    rentedTo = models.ForeignKey(Customers, on_delete=models.SET_NULL, default=None, null=True, blank=True)
     notes = models.CharField(max_length=500, default=None, null=True, blank=True)
 
     def __str__(self):
